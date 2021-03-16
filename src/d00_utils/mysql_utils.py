@@ -1,6 +1,7 @@
 import sqlalchemy
 import mysql.connector
 
+
 def mysql_connect():
     from conf.conf import mysql_pseudo, mysql_mdp
     mysql_username = mysql_pseudo
