@@ -1,38 +1,16 @@
 import pandas as pd
+import sys
+sys.path.insert(0, "/home/apprenant/simplon_projects/american_dream/")
 
-def load_data_to_csv():
+from src.d00_utils.mysql_utils import mysql_connect, save_to_mysql
 
-    # Import of the first database (from brentozar)
-    survey_filepath='../data/01_raw/2020_Data_Professional_Salary_Survey_Responses.xlsx'
-    survey_data = pd.read_excel(survey_filepath,  engine='openpyxl', skiprows=3)
+# After dowloading my csv and xlsx files, I read them with pandas
+df1 = pd.read_excel(r"/home/apprenant/simplon_projects/american_dream/data/01_raw/2020_Data_Professional_Salary_Survey_Responses.xlsx", skiprows=3)
+dfk = pd.read_csv(r"/home/apprenant/simplon_projects/american_dream/data/01_raw/DataAnalyst.csv")
 
-    # Import of the second database (from Kaggle)
-    glassdoor_filepath='../data/01_raw/DataAnalyst.csv'
-    glassdoor_data = pd.read_csv(glassdoor_filepath)
+#Create connection with mysqm
+connect = mysql_connect()
 
- #   print(survey_data.head())
- #   print(glassdoor_data.head())
-
-    # Select rows where country is United States
-
-    survey_data = survey_data[survey_data['Country'] == 'United States']
-
-    # Select useful rows 
-
-    survey_data = survey_data[
-        [
-            'Survey Year',
-            'SalaryUSD',
-            'PostalCode',
-            'EmploymentStatus',
-            'JobTitle',
-            'YearsWithThisTypeOfJob',
-            'HowManyCompanies',
-            'OtherPeopleOnYourTeam',
-            'Gender',
-            'OtherJobDuties'
-        ]
-    ]
-    # Save the preprocessed data in a .csv file 
-    survey_data.to_csv("../data/02_intermediate/survey_data.csv")
-    print("Preprocessed data from the first dataset was saved in file '../data/02_intermediate/survey_data.csv'")
+# Save the table in mysql database
+save_to_mysql(db_connect=connect,df_to_save=df1,df_name='excel_table')
+save_to_mysql(db_connect=connect,df_to_save=dfk,df_name='csv_table')
