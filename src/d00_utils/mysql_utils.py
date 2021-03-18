@@ -1,12 +1,12 @@
 import sqlalchemy
 import mysql.connector
-
+db name =
 
 def mysql_connect():
     from conf.conf import mysql_pseudo, mysql_mdp
     mysql_username = mysql_pseudo
     mysql_password = mysql_mdp
-    database_name = 'american_dream'
+    database_name = db_name
     database_connection = sqlalchemy.create_engine('mysql+mysqlconnector://{0}:{1}@localhost/{2}'.format(mysql_username, mysql_password, database_name), pool_recycle=1, pool_timeout=57600).connect()
     return database_connection
 
