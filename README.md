@@ -3,16 +3,17 @@
 
 The original data is in the 'data/01_raw' folder
 
-Once cleaned, it goes into the 'data/02_intermediate' folder
 
 In the notebook folder, there are two files to check : 'Career_visualization.ipynb' 'Data_cleaning.ipynb'
 
 
 In the 'src/d00_utils' folder, there is one file 'mysql_utils.py' This file defines the functions to connect and to save to MySQL. 
 
-In the 'src/d01_data' folder, there is the 'load_data.py''
+In the 'src/d01_data' folder, there is 'load_data.py' This script loads the data from the excel and csv tables into a MySQL database
 
 The 'requirements.txt' lists the libraries installed in the Python3 enviromnment, it was created using 'pip freeze > requirements.txt'
+
+
 
 
 
